@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>用户列表</title>
-	<link rel="stylesheet" type="text/css" href="/weibo/Public/hdjs/hdui/css/hdui.css">
-	<link rel="stylesheet" type="text/css" href="/weibo/Public/Admin/Css/node.css">
+	<link rel="stylesheet" type="text/css" href="/webvideo/Public/hdjs/hdui/css/hdui.css">
+	<link rel="stylesheet" type="text/css" href="/webvideo/Public/Admin/Css/node.css">
 </head>
 <body>
 	<table class="table1">
@@ -17,7 +17,7 @@
 			<td><?php echo ($v["id"]); ?></td>
 			<td><?php echo ($v["username"]); ?></td>
 			<td>
-				<?php if($v["username"] == C("RBAC_SUPPERADMIN")): ?>超级管理员
+				<?php if($v["username"] == C("RBAC_SUPERADMIN")): ?>超级管理员
 				<?php else: ?>
 					<ul>
 					<?php if(is_array($v["role"])): foreach($v["role"] as $key=>$value): ?><li><?php echo ($value["name"]); ?>(<?php echo ($value["remark"]); ?>)</li><?php endforeach; endif; ?>
@@ -29,7 +29,7 @@
 	</table>
 	
 </body>
-<script type="text/javascript" src="/weibo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
-	<srcipt src="/weibo/Public/hdjs/hdslide/js/hdslide.js"/>
-	<script type="text/javascript" src="/weibo/Public/hdjs/hdui/js/hdui.js"></script>
+<script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
+	<srcipt src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"/>
+	<script type="text/javascript" src="/webvideo/Public/hdjs/hdui/js/hdui.js"></script>
 </html>

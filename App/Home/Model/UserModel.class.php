@@ -57,24 +57,7 @@ class UserModel extends Model {
 		return $this->create($data) ? 1 : $this->getError();
 	}
 	
-	//注册一条用户
-	public function register($username, $password, $repassword, $email, $verify) {
-		$data = array(
-			'username'=>$username,
-			'password'=>$password,
-			'repassword'=>$repassword,
-			'email'=>$email,
-			'verify'=>$verify,
-		);
-		
-		if ($this->create($data)) {
-			$uid = $this->add();
-			return $uid ? $uid : 0;
-		} else {
-			return $this->getError();
-		}
-	}
-	
+
 	//登录用户
 	public function login($username, $password, $auto) {
 		$data = array(

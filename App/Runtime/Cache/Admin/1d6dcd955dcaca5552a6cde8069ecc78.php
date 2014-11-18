@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Rbac</title>
-	<link rel="stylesheet" type="text/css" href="/weibo/Public/hdjs/hdui/css/hdui.css">
+	<link rel="stylesheet" type="text/css" href="/webvideo/Public/hdjs/hdui/css/hdui.css">
 
 </head>
 <body>
@@ -37,7 +37,7 @@
 </table>
 </form>
 </body>
-<script type="text/javascript" src="/weibo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
-	<srcipt src="/weibo/Public/hdjs/hdslide/js/hdslide.js"/>
-	<script type="text/javascript" src="/weibo/Public/hdjs/hdui/js/hdui.js"></script>
+<script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
+	<srcipt src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"/>
+	<script type="text/javascript" src="/webvideo/Public/hdjs/hdui/js/hdui.js"></script>
 </html>

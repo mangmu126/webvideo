@@ -11,7 +11,7 @@ return array(
 	//数据库配置
 	'DB_TYPE'=>'mysql',
 	'DB_USER'=>'root',
-	'DB_PWD'=>'mangmu220',
+	'DB_PWD'=>'root',
 	'DB_PREFIX'=>'think_',
 	'DB_NAME'=>'rbac',
 	'DB_HOST'=>'localhost',
