@@ -231,7 +231,7 @@ $(function () {
 	//loading
 	$('#loading').dialog({
 		width : 180,
-		height : 40,
+		height : 42,
 		closeOnEscape : false,
 		modal : true,
 		resizable : false,

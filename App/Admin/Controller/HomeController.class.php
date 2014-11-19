@@ -21,7 +21,7 @@ class HomeController extends Controller {
 				$update = array(
 						'id'=>$userObj['id'],
 						'last_login'=>NOW_TIME,
-						//'last_ip'=>get_client_ip(1),
+						'last_ip'=>get_client_ip(1),
 				);
 				$User->save($update);
 				
@@ -45,4 +45,6 @@ class HomeController extends Controller {
 			$this->redirect('Login/index');
 		}
 	}
+
+
 }

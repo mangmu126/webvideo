@@ -73,23 +73,6 @@ Class UserModel extends RelationModel{
 		return $this->create($data) ? 1 : $this->getError();
 	}
 	
-	//注册一条用户
-	public function register($username, $password, $repassword, $email, $verify) {
-		$data = array(
-			'username'=>$username,
-			'password'=>$password,
-			'repassword'=>$repassword,
-			'email'=>$email,
-			'verify'=>$verify,
-		);
-		
-		if ($this->create($data)) {
-			$uid = $this->add();
-			return $uid ? $uid : 0;
-		} else {
-			return $this->getError();
-		}
-	}
 	
 	//登录用户
 	public function login($username, $password, $auto) {
@@ -113,9 +96,10 @@ Class UserModel extends RelationModel{
 				return $this->getError();
 			}
 		}
-		
+	
 		//验证密码
 		$user = $this->field('id,username,password')->where($map)->find();
+
 		if ($user['password'] == sha1($password)) {
 			
 			//登录验证后写入登录信息
@@ -124,7 +108,7 @@ Class UserModel extends RelationModel{
 				'last_login'=>NOW_TIME,
 				'last_ip'=>get_client_ip(1),
 			);
-			$this->save($update);
+			
 			
 			//将记录写入到cookie和session中去
 			$auth = array(
@@ -158,5 +142,5 @@ Class UserModel extends RelationModel{
 	
 
 
-	
+
 }

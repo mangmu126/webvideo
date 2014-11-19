@@ -18,4 +18,5 @@ return array(
 	//'DB_DSN'=>'mysql:host=localhost;dbname=rbac;charset=UTF8',
 	//URL模式
 	'URL_MODEL'=>2,
+	
 );

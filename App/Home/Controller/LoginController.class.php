@@ -4,6 +4,7 @@ use Think\Verify;
 
 class LoginController extends HomeController {
 	public function index() {
+			$this->login();
 		if (!session('?user_auth')) {
 			$this->display();
 		} else {

@@ -21,9 +21,16 @@ return array(
 			'__HD_JS__'=>__ROOT__.'/Public/hdjs/hdui/js',
 			'__HD_CSS__'=>__ROOT__.'/Public/hdjs/hdui/css',
 			'__HD_IMG__'=>__ROOT__.'/Public/hdjs/hdui/img',
+		'__BTP_JS__'=>__ROOT__.'/Public/bootstrap/Js',
+			'__BTP_IMG__'=>__ROOT__.'/Public/bootstrap/Images',
+			'__BTP_CSS__'=>__ROOT__.'/Public/bootstrap/Css',
+			'__BTP_FRONT__'=>__ROOT__.'/Public/bootstrap/front',
+	'__BTP__'=>__ROOT__.'/Public/bootstrap/assets',
 	),
 	//设置默认主题目录
 	'DEFAULT_THEME'=>'Default',
 	'URL_MODEL'=>2,
 	'SHOW_PAGE_TRACE'=>true,
-);
+	//COOKIE密钥
+	'COOKIE_key'=>'heshaofeng',
+	);

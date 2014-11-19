@@ -1,60 +1,54 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="/webvideo/Public/Admin/Js/index.js"></script>
-<link rel="stylesheet" href="/webvideo/Public/Admin/Css/public.css" />
-<link rel="stylesheet" href="/webvideo/Public/Admin/Css/index.css" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<base target="iframe"/>
-<head>
-</head>
-<body>
-	<div id="top">
-		<div class="menu">
-			<a href="#">选择按钮</a>
-			<a href="#">选择按钮</a>
-			<a href="#">选择按钮</a>
-			<a href="#">选择按钮</a>
-			<a href="#">选择按钮</a>
-		</div>
-		<div class="exit">
-			<a href="#" target="_self">退出</a>
-			<a href="http://bbs.houdunwang.com" target="_blank">获得帮助</a>
-			<a href="http://www.houdunwang.com" target="_blank">后盾网</a>
-		</div>
-	</div>
-	<div id="left">
-		<dl>
-			<dt>Rbac</dt>
-			<dd><a href="<?php echo U('Admin/Rbac/index');?>">用户列表</a></dd>
-			<dd><a href="<?php echo U('Admin/Rbac/role');?>">角色列表</a></dd>
-			<dd><a href="<?php echo U('Admin/Rbac/node');?>">节点列表</a></dd>
-			<dd><a href="<?php echo U('Admin/Rbac/addUser');?>">添加用户</a></dd>
-			<dd><a href="<?php echo U('Admin/Rbac/addRole');?>">添加角色</a></dd>
-			<dd><a href="<?php echo U('Admin/Rbac/addNode');?>">添加节点</a></dd>
-			
-		</dl>
-		<dl>
-			<dt>功能标题</dt>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-		</dl>
-		<dl>
-			<dt>功能标题</dt>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-		</dl>
-	</div>
-	<div id="right">
-		<iframe name="iframe" src="#"></iframe>
-	</div>
-</body>
+<?php if (!defined('THINK_PATH')) exit();?>
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>后台管理系统</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <link href="/webvideo/Public/bootstrap/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+  <link href="/webvideo/Public/bootstrap/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+   <link href="/webvideo/Public/bootstrap/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+
+  <div class="header">
+    
+      <div class="dl-title">
+       <!--<img src="/chinapost/Public/assets/img/top.png">-->
+      </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user"><?php echo ($name); ?></span><a href="<?php echo U('Admin/User/logout');?>" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+  </div>
+   <div class="content">
+    <div class="dl-main-nav">
+      <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
+      <ul id="J_Nav"  class="nav-list ks-clear">
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">业务管理</div></li>      <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">业务管理</div></li>  
+
+      </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+
+    </ul>
+   </div>
+  <script type="text/javascript" src="/webvideo/Public/bootstrap/assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="/webvideo/Public/bootstrap/assets/js/bui-min.js"></script>
+  <script type="text/javascript" src="/webvideo/Public/bootstrap/assets/js/common/main-min.js"></script>
+  <script type="text/javascript" src="/webvideo/Public/bootstrap/assets/js/config-min.js"></script>
+  <script>
+    BUI.use('common/main',function(){
+      var config = [{id:'1',menu:[{text:'系统管理',items:[{id:'12',text:'机构管理',href:'Node/index.html'},
+      {id:'3',text:'角色管理',href:'Role/index.html'},
+      {id:'4',text:'用户管理',href:'User/index.html'},
+      {id:'6',text:'菜单管理',href:'Menu/index.html'}]}]},
+      {id:'7',homePage : '9',menu:[{text:'业务管理',items:[{id:'9',text:'查询业务',href:'Node/index.html'}]}]},
+      {id:'10',homePage : '11',menu:[{text:'业务管理',items:[{id:'11',text:'查询业务',href:'Node/index.html'}]}]},
+
+      ];
+      new PageUtil.MainPage({
+        modulesConfig : config
+      });
+    });
+  </script>
+ </body>
 </html>
