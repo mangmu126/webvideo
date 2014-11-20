@@ -26,38 +26,54 @@ class RbacController extends Controller{
 	}
 	//添加用户
 	public function addUser(){
-		$this->role=M('role')->select();
-		$this->display();
-	}
-	//添加用户表单处理
-	public function addUserHandle(){
-		//用户信息
-		$user=array(
-			'username'=>I('username'),
-			'password'=>I('password','','md5')
-			);
-
-		//所属角色
-		$role=array();
-		if ($uid=M('user')->add($user)) {
-			foreach($_POST['role_id'] as $v){
-				$role[]=array(
-					'role_id'=>$v,
-					'user_id'=>$uid
-					);
-			}
+		if(IS_AJAX){
 			
-			//添加角色
-			M('role_user')->addAll($role);
-			$this->success('添加成功！',U('Admin/Rbac/index'));
+			$User=D('user');
+			$uid=$User->addUser(I('username'),I('password','','sha1'));
+			if($uid){
+				//所属角色
+				$role=array();
+				
+					foreach($_POST['role_id'] as $v){
+						$role[]=array(
+							'role_id'=>$v,
+							'user_id'=>$uid
+							);
+					}
+					
+					//添加角色
+					if(M('role_user')->addAll($role)){
+						echo 1;
+					}else{
+						echo 0;
+					}
+			}
 		}else{
-			$this->error('添加失败');
+			$this->role=M('role')->select();
+			$this->display();
 		}
 	}
+	
 	//添加角色
 	public function addRole(){
-		$this->display();
-		//echo '22';
+		if (IS_AJAX) {
+			$Role=D('role');
+			$id=$Role->daaRole($_POST);
+			echo $id;
+		}else{
+			$this->display();
+		}
+	}
+	//编辑角色
+	public function editpass(){
+		if (IS_AJAX)
+		 	{
+						# code...
+			}
+		else
+			{
+				$this->display();
+			}
 	}
 	//添加角色表单处理
 	public function addRoleHandle(){
@@ -69,30 +85,31 @@ class RbacController extends Controller{
 	}
 	//添加节点
 	public function addNode(){
-		$this->pid=I('pid',0,'intval');
-		$this->level=I('level',1,'intval');//等级
-
-		switch ($this->level) {
-			case 1:
-				$this->type='应用';
-				break;
-			case 2:
-				$this->type='控制器';
-				break;
-			case 3:
-				$this->type='动作方法';
-				break;
-		}
-		$this->display();
-	}
-	//添加节点表单处理
-	public function addNodeHandle(){
-		if (M('node')->add($_POST)) {
-			$this->success('添加成功',U('Admin/Rbac/node'));
+		if(IS_AJAX){
+			//添加节点表单处理
+			$Node=D('node');
+			$n_id=$Node->addNode($_POST);
+			echo $n_id;
 		}else{
-			$this->error('添加失败');
+			$this->pid=I('pid',0,'intval');
+			$this->level=I('level',1,'intval');//等级
+
+			switch ($this->level) {
+				case 1:
+					$this->type='应用';
+					break;
+				case 2:
+					$this->type='控制器';
+					break;
+				case 3:
+					$this->type='动作方法';
+					break;
+			}
+			$this->display();
 		}
 	}
+	
+	
 	//配置权限
 	public function access(){
 		$this->rid=I('rid',0,'intval');
@@ -128,6 +145,26 @@ class RbacController extends Controller{
 			$this->success('修改成功',U('Admin/Rbac/role'));
 		}else{
 			$this->error('修改失败！');
+		}
+	}
+	//删除角色
+	public function delRole(){
+		if (IS_AJAX) {
+			$Role=D('role');
+			$id=$Role->delRole(I('post.id'));	
+			echo $id;
+		}else{
+			$this->redirect('Index/index');
+		}
+	}
+	//删除节点
+	public function delNode(){
+		if (IS_AJAX) {
+			$Node=D('node');
+			$id=$Node->delNode(I('post.id'));
+			echo ($id);
+		}else{
+			$this->redirect('Index/index');
 		}
 	}
 }

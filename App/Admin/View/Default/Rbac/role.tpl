@@ -27,6 +27,7 @@
 				</td>
 				<td>
 					<a href="{:U('Admin/Rbac/access',array('rid'=>$v['id']))}">配置权限</a>
+					<a href="javascript:hd_confirm(' 确定删除吗？ ',function(){delRole(<?php echo $v['id']; ?>)})"  >删除</a>
 				</td>
 			</tr>
 		</foreach>
@@ -36,4 +37,24 @@
 <script type="text/javascript" src="__JS__/jquery-1.7.2.min.js"></script>
 	<srcipt src="__HD_SLIDEJS__/hdslide.js"/>
 	<script type="text/javascript" src="__HD_JS__/hdui.js"></script>
+	<script type="text/javascript">
+	var ThinkPHP = {
+	'index':'{:U("Admin/Rbac/role")}',
+	'Role' : '{:U("Admin/Rbac/delRole")}'
+	};
+	
+	function  delRole(id){
+			$.ajax({
+				type:'POST',
+				url:ThinkPHP['Role'],
+				data:{
+					id:id
+				},
+				success:function(response, status, xhr){
+					var url = ThinkPHP['index'];
+					window.location.href=url;
+				}
+			});
+		};
+	</script>
 </html>

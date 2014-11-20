@@ -48,6 +48,16 @@ class UserController extends HomeController {
 			$this->error('非法访问！');
 		}
 	}
+	//删除用户
+	public function delUser(){
+		if (IS_AJAX) {
+			$User = D('User');
+			$id=$User->delUser(I('post.id'));
+			echo $id;
+		}else{
+			$this->redirect('Index/index');
+		}
+	}
 	
 	//退出登录
 	public function logout() {

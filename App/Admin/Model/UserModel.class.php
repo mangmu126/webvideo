@@ -133,10 +133,26 @@ Class UserModel extends RelationModel{
 	}
 	
 	
-	
-	
-	
-	
+	//删除用户	
+	public function delUser($id){
+		if($this->delete($id)){
+			return 1;	
+		}else{
+			return 0;
+		}
+	}
+	//新增用户	
+	public function addUser($username,$password){
+		$user=array(
+			'username'=>$username,
+			'password'=>$password
+			);
+		if ($uid=$this->add($user)) {
+			return $uid;
+		}else{
+			return 0;
+		}
+	}
 	
 	
 	
