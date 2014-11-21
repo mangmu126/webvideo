@@ -39,7 +39,8 @@
 	<script type="text/javascript">
 	var ThinkPHP = {
 	'index':'<?php echo U("Admin/Rbac/index");?>',
-	'User' : '<?php echo U("Admin/User/delUser");?>'
+	'User' : '<?php echo U("Admin/User/delUser");?>',
+	'editpass' : '<?php echo U("Admin/User/editPass");?>',
 	};
 	
 	function  delUser(id){
@@ -56,8 +57,16 @@
 			});
 		};
 		function cl_k(){
-			$('input[name="id"]').attr('id');
-			alert($('input[name="password"]').val());
+			
+			
+			$.ajax({
+				type:'post',
+				url:ThinkPHP['editpass'],
+				data:{
+					id:$('input[name="id"]').attr('id'),
+					password$('input[name="password"]').val()
+				},
+			});
 		}
 			function editpass(id){
 			$.modal({
