@@ -25,7 +25,7 @@
     };
     window.onload=function(){
            /*第1个参数是加载编辑器div容器，第2个参数是编辑器类型，第3个参数是div容器宽，第4个参数是div容器高*/
-        xiuxiu.embedSWF("altContent",1,"100%","95%");
+        xiuxiu.embedSWF("altContent",1,"100%","90%");
            //修改为您自己的图片上传接口
         xiuxiu.setUploadURL("http://location/webvideo/"+ThinkPHP['pic']);
             xiuxiu.setUploadType(2);
@@ -82,7 +82,7 @@
    
          <tr>
             <td align="right" class="tableleft" >头像</td>
-            <td><img src="/webvideo/Public/Admin/Img/23-012515_559.jpg" style="width:140px;height:140px;" id="pic" /></td>
+            <td><img src="/webvideo/Public/Admin/Img/23-012515_559.jpg" style="width:140px;height:140px;cursor:pointer" id="pic" /></td>
             
         </tr>
         <tr>
@@ -113,7 +113,7 @@
          </tr>
         </table>
   </div>
-  <div class="tab-pane" id="profile" style="height:630px;">
+  <div class="tab-pane" id="profile" style="height:100%;">
       
 <div id="altContent">
     <h1>大猫</h1>

@@ -4,7 +4,7 @@ namespace Admin\Controller;
 
 class IndexController extends HomeController {
 	public function _initialize(){
-		$this->login();
+		//$this->login();
 	}
     public function index(){
 

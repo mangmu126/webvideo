@@ -49,4 +49,16 @@ Class MemberModel extends Model
 				return 0;
 			}
 		}
+		//查找老师
+		public function findTheacher($m_name)
+		{	
+			$map['m_name']=array('like',"%$m_name%");
+			$map['m_type']=2;
+			if ($rel=$this->where($map)->limit(10)->select()) {
+				return $rel;
+			}else{
+				return 0;
+			}
+
+		}
 }

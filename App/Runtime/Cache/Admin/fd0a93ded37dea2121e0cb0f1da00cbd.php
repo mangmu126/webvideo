@@ -38,7 +38,7 @@
 <form class="form-inline definewidth m20" action="index.html" method="get">  
     老师名称：
     <input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">添加老师</button>
+    <a  class="btn btn-primary" onclick="findTheacher()">查询</a>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">添加老师</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
@@ -60,7 +60,7 @@
                   <a href="javascript:void(0);" onclick="editMpass(<?php echo $v['m_id']; ?>)">修改密码</a>
                 <?php if($v['lock'] == '1'): ?><a href="javascript:hd_confirm(' 锁定后老师将无法登录！ ',function(){editLock(<?php echo $v['m_id']; ?>)})">锁定</a>
                   <?php else: ?>
-                   <a href="javascript:hd_confirm(' 锁定后老师将无法登录！ ',function(){deblocking(<?php echo $v['m_id']; ?>)})">解锁</a><?php endif; ?>
+                   <a href="javascript:hd_confirm(' 解锁后老师将可以正常操作！ ',function(){deblocking(<?php echo $v['m_id']; ?>)})">解锁</a><?php endif; ?>
             </td>
         </tr><?php endforeach; endif; ?>
         </table>
@@ -74,9 +74,39 @@ var ThinkPHP={
     'editMpass':'<?php echo U("Admin/Member/editMpass");?>',
     'editLock':'<?php echo U("Admin/Member/editLock");?>',
     'deblocking':'<?php echo U("Admin/Member/deblocking");?>',
-    'addTeacher':'<?php echo U("Admin/Member/addTeacher");?>'
+    'addTeacher':'<?php echo U("Admin/Member/addTeacher");?>',
+    'findTheacher':'<?php echo U("Admin/Member/findTheacher");?>'
 };
-
+//查找老师
+    function findTheacher(){
+        if($('#rolename').val() !='')
+        {
+            $.ajax({
+                type:'post',
+                url:ThinkPHP['findTheacher'],
+                data:{
+                    m_name:$('#rolename').val()
+                },
+                success:function(response,status,xhr){
+                        $.modal({
+                          width: 500,
+                          height: 300,
+                          title:"超级管理员修改老师密码",
+                          button: true,
+                         
+                          success: function () {
+                            
+                          },
+                          content: response,
+                          });
+                },
+            });
+        }
+        else
+        {
+            $.dialog({'message':" 请填写老师名字! ",type:"error"});
+        }
+    }
  function cl_k1(id){
         $.ajax({
             type:'post',
