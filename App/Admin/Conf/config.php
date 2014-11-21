@@ -16,7 +16,7 @@ return array(
 		'__EASYUI__'=>__ROOT__.'/Public/'.MODULE_NAME.'/easyui',
 		'__CSS__'=>__ROOT__.'/Public/'.MODULE_NAME.'/Css',
 		'__JS__'=>__ROOT__.'/Public/'.MODULE_NAME.'/Js',
-		'__IMG__'=>__ROOT__.'/Public'.MODULE_NAME.'/Img',
+		'__IMG__'=>__ROOT__.'/Public/'.MODULE_NAME.'/Img',
 		'__HD_SLIDEJS__'=>__ROOT__.'/Public/hdjs/hdslide/js',
 			'__HD_JS__'=>__ROOT__.'/Public/hdjs/hdui/js',
 			'__HD_CSS__'=>__ROOT__.'/Public/hdjs/hdui/css',

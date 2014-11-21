@@ -26,11 +26,14 @@
 				
 			</td>
 			
+			
+			<?php if($v["username"] == C("RBAC_SUPERADMIN")): ?><td></td>
+			<?php else: ?>
 			<td >
 			<a href="javascript:void(0);" onclick="editpass(<?php echo $v['id']; ?>)">修改密码</a>
-			<a href="<?php echo U('Admin/Rbac/editUser',array('id'=>$v['id']));?>">修改权限</a>	
+			<a href="javascript:void(0);" onclick="editJurisdiction(<?php echo $v['id']; ?>)">修改权限</a>	
 			<a href="javascript:hd_confirm(' 确定删除吗？ ',function(){delUser(<?php echo $v['id']; ?>)})"  >删除</a>
-			</td>
+			</td><?php endif; ?>
 		</tr><?php endforeach; endif; ?>
 	</table>
 	<script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
@@ -41,6 +44,7 @@
 	'index':'<?php echo U("Admin/Rbac/index");?>',
 	'User' : '<?php echo U("Admin/User/delUser");?>',
 	'editpass' : '<?php echo U("Admin/User/editPass");?>',
+	'editJurisdiction':'<?php echo U("Admin/Rbac/editJurisdiction");?>'
 	};
 	
 	function  delUser(id){
@@ -56,6 +60,44 @@
 				}
 			});
 		};
+		//修改权限
+		function editJurisdiction(id){
+			$.modal({
+				  width: 400,
+				  height: 160,
+				  title:"超级管理员权限",
+				  button: true,
+				 
+				  success: function () {
+				  $.removeModal();
+				  },
+				  content: '<from action="reg.php" method="post" class="hd-form" id="editJurisdictio">'+'<table class="table1">'+'<tr><td> 权限 : </td><td><select name="role_id"><?php if(is_array($role)): foreach($role as $key=>$r): ?><option value="<?php echo ($r['id']); ?>"><?php echo ($r["name"]); ?>(<?php echo ($r["remark"]); ?>)</option><?php endforeach; endif; ?></select></td><input type="hidden" name="id" uid='+id+'>'+'<tr ><td></td><td  align="left" ><a href="javascript:void(0);" onclick="cl_k1()" class="hd-success" >提交</a></td></tr></table></from>',
+				  });
+		}
+		function cl_k1(){
+			$.ajax({
+				type:'post',
+				url:ThinkPHP['editJurisdiction'],
+				data:{
+					role_id:$('select[name="role_id"]').val(),
+					user_id:$('input[name="id"]').attr('uid')
+				},
+				success:function(response,status,xhr)
+				{
+					if(response=='0'){
+						$.dialog({'message':" 修改失败! ",type:"error"});
+					}else{
+						$.dialog({'message':" 修改成功~ ",type:"success"});	
+						setTimeout(function(){
+						var url = ThinkPHP['index'];
+							window.location.href=url;	
+						},1000);
+						
+					}
+				},
+
+			});
+		}
 		function cl_k(){
 			
 			
@@ -64,8 +106,22 @@
 				url:ThinkPHP['editpass'],
 				data:{
 					id:$('input[name="id"]').attr('id'),
-					password$('input[name="password"]').val()
+					password:$('input[name="password"]').val()
 				},
+				success:function(response,status,xhr)
+				{
+					if(response=='0'){
+						$.dialog({'message':" 修改失败! ",type:"error"});
+					}else{
+						$.dialog({'message':" 修改成功~ ",type:"success"});	
+						setTimeout(function(){
+							var url = ThinkPHP['index'];
+							window.location.href=url;	
+						},1000);
+						
+					}
+				},
+
 			});
 		}
 			function editpass(id){
@@ -76,7 +132,7 @@
 				  button: true,
 				 
 				  success: function () {
-				  	alert($('.hd-form').serialize());
+				  	$.removeModal();
 				  },
 				  content: '<from action="reg.php" method="post" class="hd-form" id="editPass">'+'<table class="table1">'+'<tr><td> 新密码 : </td><td><input type="password"name="password"/></td><input type="hidden" name="id" id='+id+'>'+'<tr ><td></td><td  align="left" ><a href="javascript:void(0);" onclick="cl_k()" class="hd-success" >提交</a></td></tr></table></from>',
 				  });

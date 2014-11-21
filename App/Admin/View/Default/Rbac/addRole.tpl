@@ -38,7 +38,7 @@
 </form>
 </body>
 <script type="text/javascript" src="__JS__/jquery-1.7.2.min.js"></script>
-	<srcipt src="__HD_SLIDEJS__/hdslide.js"/>
+	<script src="__HD_SLIDEJS__/hdslide.js"></script>
 	<script type="text/javascript" src="__HD_JS__/hdui.js"></script>
 	<script type="text/javascript" src="__HD_VAl_JS__/hdvalidate.js"></script>
 	<link rel="stylesheet" type="text/css" href="__HD_VAl_CSS__/hdvalidate.css">

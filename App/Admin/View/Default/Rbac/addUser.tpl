@@ -26,12 +26,14 @@ var ThinkPHP = {
 		$('#backid').click(function(){
 				window.location.href=ThinkPHP['index'];
 		 });
+		/*
 		$('.add-role').on('click',function(){
 				var obj = $(this).parents('tr').clone();
 				obj.find('.add-role').remove();
 				$('#last').before(obj);
 			//alert(obj);
 			});
+		*/
 		//异步
 		$('#ajax').on('click',function(){
 			if ($('form').is_validate()) {
@@ -136,7 +138,7 @@ var ThinkPHP = {
 				<option value="{$v['id']}">{$v.name}({$v.remark})</option>
 				</foreach>
 			</select>
-			<span class="add-role hd-success">添加一个角色</span>
+		
 			</td>
 	</tr>
    

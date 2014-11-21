@@ -7,7 +7,9 @@ class IndexController extends HomeController {
 		$this->login();
 	}
     public function index(){
-    	$this->name=get_cookie_name();
+
+    	$name=get_cookie_name();
+		$this->username=$name['username'];
 		$this->display();
     }
 }

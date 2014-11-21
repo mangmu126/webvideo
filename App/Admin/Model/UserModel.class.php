@@ -154,8 +154,17 @@ Class UserModel extends RelationModel{
 		}
 	}
 	
-	
-	
+	//超级管理员修改用户密码
+	public function editpass($post){
+		$data['id']=$post['id'];
+		$data['password']=sha1($post['password']);
+		if($this->save($data)){
+			return 1;
+		}else
+		{
+			return 0;
+		}
+	}
 
 
 

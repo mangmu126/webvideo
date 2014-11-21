@@ -117,29 +117,24 @@ var ThinkPHP = {
 <form id="test">
 <table class="table table-bordered table-hover definewidth m10">
 	<tr class="title-header">
-		<th colspan="2">添加用户</th>
+		<th colspan="2">修改{$username}的权限</th>
 	</tr>
-    <tr>
-        <td width="10%" class="tableleft">用户账号</td>
-        <td><input type="text" name="username"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">密码</td>
-        <td><input type="password" name="password"/></td>
-    </tr>   
+	<?php $i=0;?>
+   <foreach name='data' item='v'>
+   <?php $i++;?>
    <tr>
 		<td class="tableleft">所属角色</td>
 		<td>
-			<select name="role_id[]">
-				<option value="">请选择角色</option>
-				<foreach name='role' item='v'>
-				<option value="{$v['id']}">{$v.name}({$v.remark})</option>
-				</foreach>
-			</select>
+		<select name="role_id[]"><option value="{$v['id']}">{$v.name}({$v.remark})</option><foreach name='role' item='r'><?php if($r['id'] !=$v['id']){?><option value="{$r['id']}">{$r.name}({$r.remark})</option><?php } ?></foreach></select>
+			<?php if($i=='1'){ ?>
 			<span class="add-role hd-success">添加一个角色</span>
+			<?php } ?>
+			<?php if($i !='1'){?>
+			<span class="del-role btn">删除角色</span>
+			<?php } ?>
 			</td>
 	</tr>
-   
+   </foreach>
     <tr id="last">
         <td class="tableleft"></td>
         <td>

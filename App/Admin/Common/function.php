@@ -32,7 +32,6 @@ function encryption($username, $type = 0) {
 }
 //获取cookie返回name
 function get_cookie_name(){
-	$value = explode('|', encryption(cookie('auto'), 1));
-		list($username, $ip) = $value;
-		return $username;
+	 $session= session('user_auth');
+		return $session;
 }

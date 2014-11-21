@@ -58,7 +58,18 @@ class UserController extends HomeController {
 			$this->redirect('Index/index');
 		}
 	}
-	
+	//超级管理修改密码
+	public function editpass(){
+		if (IS_AJAX)
+		 	{
+				$id=D('user')->editpass($_POST);
+				echo $id;
+			}
+		else
+			{
+				$this->display();
+			}
+	}
 	//退出登录
 	public function logout() {
 		//清理session

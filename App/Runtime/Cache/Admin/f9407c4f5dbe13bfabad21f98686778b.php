@@ -16,14 +16,14 @@
        <!--<img src="/chinapost/Public/assets/img/top.png">-->
       </div>
 
-    <div class="dl-log">欢迎您，<span class="dl-log-user"><?php echo ($name); ?></span><a href="<?php echo U('Admin/User/logout');?>" title="退出系统" class="dl-log-quit">[退出]</a>
+    <div class="dl-log">欢迎您，<span class="dl-log-user"><?php echo ($username); ?></span><a href="<?php echo U('Admin/User/logout');?>" title="退出系统" class="dl-log-quit">[退出]</a>
     </div>
   </div>
    <div class="content">
     <div class="dl-main-nav">
       <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
       <ul id="J_Nav"  class="nav-list ks-clear">
-        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>		<li class="nav-item"><div class="nav-item-inner nav-order">业务管理</div></li>      <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">RBAC</div></li>  
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>		<li class="nav-item"><div class="nav-item-inner nav-order">业务管理</div></li>      <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">RBAC</div></li>   <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">老师管理</div></li> 
 
       </ul>
     </div>
@@ -49,7 +49,10 @@
       {id:'36',text:'添加角色',href:"<?php echo U('Admin/Rbac/addRole'); ?>"},
       {id:'37',text:'添加节点',href:"<?php echo U('Admin/Rbac/addNode'); ?>"},
       ]}]},
-
+      {id:'41',homePage : '42',menu:[{text:'老师管理',items:[{id:'42',text:'老师列表',href:"<?php echo U('Admin/Member/index'); ?>"},
+      {id:'43',text:'添加老师',href:"<?php echo U('Admin/Member/addTeacher'); ?>"},
+  
+      ]}]},
       ];
       new PageUtil.MainPage({
         modulesConfig : config

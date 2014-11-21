@@ -7,6 +7,7 @@ class RbacController extends Controller{
 	public function index(){
 		$this->user=D('User')->field(array('id','username'))->relation(true)->select();
 		//print_r($user);
+		$this->role=D('role')->select();
 		$this->display();
 	}
 	//角色列表
@@ -65,14 +66,20 @@ class RbacController extends Controller{
 		}
 	}
 	//编辑角色
-	public function editpass(){
+	public function editJurisdiction(){
 		if (IS_AJAX)
 		 	{
-						# code...
+				$sql=M('role_user')->where(array('user_id'=>I('user_id','','intval')))->delete();
+				$rel=M('role_user')->add($_POST);
+				if($rel){
+					echo 1;
+				}else{
+					echo 0;
+				}
 			}
 		else
 			{
-				$this->display();
+				$this->redirect('Index/index');
 			}
 	}
 	//添加角色表单处理

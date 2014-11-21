@@ -26,14 +26,12 @@ var ThinkPHP = {
 		$('#backid').click(function(){
 				window.location.href=ThinkPHP['index'];
 		 });
-		/*
 		$('.add-role').on('click',function(){
 				var obj = $(this).parents('tr').clone();
 				obj.find('.add-role').remove();
 				$('#last').before(obj);
 			//alert(obj);
 			});
-		*/
 		//异步
 		$('#ajax').on('click',function(){
 			if ($('form').is_validate()) {
@@ -119,27 +117,27 @@ var ThinkPHP = {
 <form id="test">
 <table class="table table-bordered table-hover definewidth m10">
 	<tr class="title-header">
-		<th colspan="2">添加用户</th>
+		<th colspan="2">修改<?php echo ($username); ?>的权限</th>
 	</tr>
-    <tr>
-        <td width="10%" class="tableleft">用户账号</td>
-        <td><input type="text" name="username"/></td>
-    </tr>
-    <tr>
-        <td class="tableleft">密码</td>
-        <td><input type="password" name="password"/></td>
-    </tr>   
+	<?php $i=0;?>
+   <?php if(is_array($data)): foreach($data as $key=>$v): $i++;?>
    <tr>
 		<td class="tableleft">所属角色</td>
 		<td>
-			<select name="role_id[]">
-				<option value="">请选择角色</option>
-				<?php if(is_array($role)): foreach($role as $key=>$v): ?><option value="<?php echo ($v['id']); ?>"><?php echo ($v["name"]); ?>(<?php echo ($v["remark"]); ?>)</option><?php endforeach; endif; ?>
+		<select name="role_id[]">
+				<option value="<?php echo ($v['id']); ?>"><?php echo ($v["name"]); ?>(<?php echo ($v["remark"]); ?>)</option>
+				<?php if(is_array($role)): foreach($role as $key=>$r): if($r['id'] !=$v['id']){?>
+				<option value="{$r['id']}"><?php echo ($r["name"]); ?>(<?php echo ($r["remark"]); ?>)</option>
+				<?php } endforeach; endif; ?>
 			</select>
-		
+			<?php if($i=='1'){ ?>
+			<span class="add-role hd-success">添加一个角色</span>
+			<?php } ?>
+			<?php if($i !='1'){?>
+			<span class="del-role btn">删除角色</span>
+			<?php } ?>
 			</td>
-	</tr>
-   
+	</tr><?php endforeach; endif; ?>
     <tr id="last">
         <td class="tableleft"></td>
         <td>
