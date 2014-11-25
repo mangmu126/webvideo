@@ -23,7 +23,7 @@
     <div class="dl-main-nav">
       <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
       <ul id="J_Nav"  class="nav-list ks-clear">
-        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">课程管理</div></li>		<li class="nav-item"><div class="nav-item-inner nav-order">业务管理</div></li>      <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">RBAC</div></li>   <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">老师管理</div></li> 
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>		<li class="nav-item"><div class="nav-item-inner nav-order">业务管理</div></li>      <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">RBAC</div></li>   <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">老师管理</div></li> 
 
       </ul>
     </div>
@@ -37,9 +37,9 @@
   <script type="text/javascript" src="__BTP__/js/config-min.js"></script>
   <script>
     BUI.use('common/main',function(){
-      var config = [{id:'1',menu:[{text:'课程管理',items:[{id:'12',text:'课程管理',href:'Node/index.html'},
-      {id:'13',text:'添加分类',href:"<?php echo U('Admin/Course/addClass'); ?>"},
-      {id:'14',text:'添加分类',href:'User/index.html'},
+      var config = [{id:'1',menu:[{text:'系统管理',items:[{id:'12',text:'机构管理',href:'Node/index.html'},
+      {id:'13',text:'角色管理',href:'Role/index.html'},
+      {id:'14',text:'用户管理',href:'User/index.html'},
       {id:'15',text:'菜单管理',href:'Menu/index.html'}]}]},
       {id:'21',homePage : '22',menu:[{text:'业务管理',items:[{id:'22',text:'查询业务',href:'Node/index.html'}]}]},
       {id:'31',homePage : '32',menu:[{text:'RBAC',items:[{id:'32',text:'用户列表',href:"<?php echo U('Admin/Rbac/index'); ?>"},

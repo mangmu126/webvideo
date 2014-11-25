@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="/webvideo/Public/bootstrap/Css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/webvideo/Public/bootstrap/Css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="/webvideo/Public/bootstrap/Css/style.css" />
-    <link rel="stylesheet" type="text/css" href="/webvideo/Public/Admin/Css/addTeacher.css"/>
     <script type="text/javascript" src="/webvideo/Public/bootstrap/Js/jquery.js"></script>
     <script src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"></script>
     <script type="text/javascript" src="/webvideo/Public/hdjs/hdui/js/hdui.js"></script>
@@ -39,7 +38,7 @@
 <form class="form-inline definewidth m20" action="index.html" method="get">  
     老师名称：
     <input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <a class="btn btn-primary" id="check">查询</a>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">添加老师</button>
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">添加老师</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
@@ -75,8 +74,7 @@ var ThinkPHP={
     'editMpass':'<?php echo U("Admin/Member/editMpass");?>',
     'editLock':'<?php echo U("Admin/Member/editLock");?>',
     'deblocking':'<?php echo U("Admin/Member/deblocking");?>',
-    'addTeacher':'<?php echo U("Admin/Member/addTeacher");?>',
-    'checkTeacher':'<?php echo U("Admin/Member/checkTeacher");?>'
+    'addTeacher':'<?php echo U("Admin/Member/addTeacher");?>'
 };
 
  function cl_k1(id){
@@ -148,7 +146,6 @@ var ThinkPHP={
         });
     }
     function editMpass(id){
-
         $.modal({
                   width: 400,
                   height: 160,
@@ -168,34 +165,7 @@ var ThinkPHP={
 
 				window.location.href=ThinkPHP['addTeacher'];
 		 });
-        //查找老师
-        $('#check').on('click',function(){
-            if($('#rolename').val() !=''){
-                $.ajax({
-                    type:'post',
-                    url:ThinkPHP['checkTeacher'],
-                    data:{
-                        'name':$('#rolename').val()
-                    },
-                    success:function(response,status,xhr){
-                                $.modal({
-                                          width: 400,
-                                          height: 500,
-                                          title:"超级管理员修改老师密码",
-                                          button: true,
-                                          success: function () {
-                                       
-                                          },
-                                 content: response,
-                              });
-                    },
-                });
-            }
-            else
-            {
-                $.dialog({'message':"请输入老师的名字!",type:"error"});
-            }
-        });
+
 
     });
 

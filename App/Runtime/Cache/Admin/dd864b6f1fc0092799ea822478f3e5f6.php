@@ -8,16 +8,16 @@
     <link rel="stylesheet" type="text/css" href="/webvideo/Public/bootstrap/Css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/webvideo/Public/bootstrap/Css/style.css" />
     <link rel="stylesheet" type="text/css" href="/webvideo/Public/hdjs/hdui/css/hdui.css">
-    <link rel="stylesheet" type="text/css" href="/webvideo/Public/Admin/Css/addTeacher.css">
+
     <script type="text/javascript" src="/webvideo/Public/bootstrap/Js/jquery.js"></script>
-<script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery.ui.js"></script>
+
     <script type="text/javascript" src="/webvideo/Public/bootstrap/Js/bootstrap.js"></script>
     <script type="text/javascript" src="/webvideo/Public/bootstrap/Js/ckform.js"></script>
     <script type="text/javascript" src="/webvideo/Public/bootstrap/Js/common.js"></script>
-
+    <script src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"></script>
     <script type="text/javascript" src="/webvideo/Public/hdjs/hdui/js/hdui.js"></script>
-    <script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery.validate.js"></script>
-   
+    <script type="text/javascript" src="/webvideo/Public/hdjs/hdvalidate/js/hdvalidate.js"></script>
+    <link rel="stylesheet" type="text/css" href="/webvideo/Public/hdjs/hdvalidate/css/hdvalidate.css">
     <script src="http://open.web.meitu.com/sources/xiuxiu.js" type="text/javascript"></script>
     <script type="text/javascript">
     var ThinkPHP={
@@ -78,29 +78,24 @@
 
 <div class="tab-content" style="margin:0 3% 0 3% ">
   <div class="tab-pane active" id="home">
-  <form id="login">
      <table class="table table-bordered table-hover definewidth m10" style="margin-top:35px;" >
    
          <tr>
-            <td align="right" class="tableleft" width="10%" >头像</td>
-            <td width="30%"><img src="/webvideo/Public/Admin/Img/23-012515_559.jpg" style="width:140px;height:140px;" id="pic" /></td>
+            <td align="right" class="tableleft" >头像</td>
+            <td><img src="/webvideo/Public/Admin/Img/23-012515_559.jpg" style="width:140px;height:140px;" id="pic" /></td>
             
         </tr>
         <tr>
             <td class="tableleft">老师名字:</td>
-            <td><input type="text" name="m_name" data="ajax" class="left"></td>
+            <td><input type="text" name="m_name"></td>
         </tr>
         <tr>
             <td class="tableleft">帐号:</td>
-            <td><input type="text" name="username" data="ajax" class="left"></td>
+            <td><input type="text" name="username"></td>
         </tr>
          <tr>
             <td class="tableleft">密码:</td>
-            <td><input type="password" name="password" data="ajax" class="left"></td>
-        </tr>
-        <tr>
-            <td class="tableleft">邮箱:</td>
-            <td><input type="text" name="email" data="ajax" class="left"></td>
+            <td><input type="password" name="password"></td>
         </tr>
         <tr>
         <td class="tableleft">状态</td>
@@ -117,7 +112,6 @@
         </td>
          </tr>
         </table>
-    </form>
   </div>
   <div class="tab-pane" id="profile" style="height:630px;">
       
@@ -132,144 +126,66 @@
 <script>
 var ThinkPHP={
     'index':'<?php echo U("Admin/Member/index");?>',
-    'addTeacher':'<?php echo U("Admin/Member/addTeacher");?>',
-    'ajaxTeacher':'<?php echo U("Admin/Member/ajaxTeacher");?>'
+    'addTeacher':'<?php echo U("Admin/Member/addTeacher");?>'
 };
   $(function () {
     $('#myTab a:last').tab('show');
     $('#pic').on('click',function(){
        $('#pp').click();
     });
-    
-
-    //验证
-    $('#login').validate({
-        submitHandler : function (form) {
-          
-        },
-        rules : {
-            m_name:{
-                required:true,
-                  minlength : 2,
-                maxlength : 50,
-                remote : {
-                    type:'post',
-                    url:ThinkPHP['ajaxTeacher'],
-                    data:{
-                        type:'m_name'
-                    },
-                },
-            },
-            username : {
-                required : true,
-                minlength : 2,
-                maxlength : 50,
-                yz:true,
-                remote : {
-                    type:'post',
-                    url:ThinkPHP['ajaxTeacher'],
-                    data:{
-                        type:'username'
-                    },
-                    },
-            },
-            password : {
-                required : true,
-                minlength : 6,
-                maxlength : 30,
-            },
-            email:{
-                required : true,
-                email:true,
-                remote:{
-                                    url : ThinkPHP['ajaxTeacher'],
-                                    type:'POST',
-                                    data:{
-                                        type:'email',
-                                        },
-                                    
-                                    },
-            },
-        },
-        messages : {
-            m_name:{
-                required:'必填',
-                remote:'该名字已被使用',
-                 minlength : $.format('需大于{0}位'),
-                maxlength : $.format('需小于{0}位！'),
-            },
-            username : {
-                required : '必填',
-                remote:'该用户名已被使用',
-                minlength : $.format('需大于{0}位'),
-                maxlength : $.format('需小于{0}位！'),
-            },
-            password : {
-                required : '必填',
-                minlength : $.format('需大于{0}位'),
-                maxlength : $.format('需小于{0}位'),
-            },
-            email:{
-                required:'必填',
-                email:'请填写正确的邮件格式^_^↑',
-                remote:'该邮箱已被注册了！'
-            },
-        },
-    });
-
     //提交
     $('#submit').on('click',function(){
-            var check;
-            $('#login').find('input[data="ajax"]').each(function(){
-                if ($(this).hasClass('error')) {
-                    check='false';
+        $.ajax({
+            type:'post',
+            url:ThinkPHP['addTeacher'],
+            data:{
+                m_name:$('input[name="m_name"]').val(),
+                username:$('input[name="username"]').val(),
+                password:$('input[name="password"]').val(),
+                pic:$('#pic').attr('url'),
+                lock:$('input[name="lock"]').val(),
+            },
+            success:function(response, status, xhr){
+                    if(response=='0'){
+                                $.dialog({'message':" 添加失败! ",type:"error"});
+                            }else{
+                                $.dialog({'message':" 添加成功~ ",type:"success"}); 
+                                setTimeout(function(){
+                                    var url = ThinkPHP['index'];
+                                    window.location.href=url;   
+                                },1000);
+                            }
+            },
+        });
+    });
+  })
+</script>
+<script>
+    $(function () {
+        
+		$('#addnew').click(function(){
 
-                };
-                if (!$(this).hasClass('valid')) {
-                    check='false';
-                };  
-            });   
-            if (check=='false') 
-                {
-                    $.dialog({'message':"请正确填写老师信息!",type:"error"});
-                }
-                else
-                {
-                    $.ajax({
-                            type:'post',
-                            url:ThinkPHP['addTeacher'],
-                            data:{
-                                    m_name:$('input[name="m_name"]').val(),
-                                    username:$('input[name="username"]').val(),
-                                    password:$('input[name="password"]').val(),
-                                    pic:$('#pic').attr('src'),
-                                    lock:$('input[name="lock"]').val(),
-                                  },
-                            success:function(response, status, xhr)
-                                {
-                                    if(response=='0')
-                                    {
-                                        $.dialog({'message':" 添加失败! ",type:"error"});
-                                    }
-                                    else
-                                    {
-                                        $.dialog({'message':" 添加成功~ ",type:"success"}); 
-                                         setTimeout(function(){
-                                                    var url = ThinkPHP['index'];
-                                                    window.location.href=url;   
-                                            },1000);
-                                    }
-                                },
-                         });
-                }
+				window.location.href="add.html";
+		 });
 
 
     });
 
-
-$.validator.addMethod('yz', function (value, element) {
-        var tel = /^([u4e00-u9fa5])+$/i;
-        return this.optional(element) || (tel.test(value));
-        }, '用户名为英文和数字');
-  })
+	function del(id)
+	{
+		
+		
+		if(confirm("确定要删除吗？"))
+		{
+		
+			var url = "index.html";
+			
+			window.location.href=url;		
+		
+		}
+	
+	
+	
+	
+	}
 </script>

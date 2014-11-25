@@ -37,7 +37,7 @@
 		</tr><?php endforeach; endif; ?>
 	</table>
 	<script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
-	<script src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"></script>
+	<srcipt src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"/>
 	<script type="text/javascript" src="/webvideo/Public/hdjs/hdui/js/hdui.js"></script>
 	<script type="text/javascript">
 	var ThinkPHP = {
