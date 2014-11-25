@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="__BTP_CSS__/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="__BTP_CSS__/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="__BTP_CSS__/style.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/addTeacher.css"/>
     <script type="text/javascript" src="__BTP_JS__/jquery.js"></script>
     <script src="__HD_SLIDEJS__/hdslide.js"></script>
     <script type="text/javascript" src="__HD_JS__/hdui.js"></script>
@@ -38,7 +39,7 @@
 <form class="form-inline definewidth m20" action="index.html" method="get">  
     老师名称：
     <input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">添加老师</button>
+    <a class="btn btn-primary" id="check">查询</a>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">添加老师</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10" >
     <thead>
@@ -78,7 +79,8 @@ var ThinkPHP={
     'editMpass':'{:U("Admin/Member/editMpass")}',
     'editLock':'{:U("Admin/Member/editLock")}',
     'deblocking':'{:U("Admin/Member/deblocking")}',
-    'addTeacher':'{:U("Admin/Member/addTeacher")}'
+    'addTeacher':'{:U("Admin/Member/addTeacher")}',
+    'checkTeacher':'{:U("Admin/Member/checkTeacher")}'
 };
 
  function cl_k1(id){
@@ -150,6 +152,7 @@ var ThinkPHP={
         });
     }
     function editMpass(id){
+
         $.modal({
                   width: 400,
                   height: 160,
@@ -169,7 +172,34 @@ var ThinkPHP={
 
 				window.location.href=ThinkPHP['addTeacher'];
 		 });
-
+        //查找老师
+        $('#check').on('click',function(){
+            if($('#rolename').val() !=''){
+                $.ajax({
+                    type:'post',
+                    url:ThinkPHP['checkTeacher'],
+                    data:{
+                        'name':$('#rolename').val()
+                    },
+                    success:function(response,status,xhr){
+                                $.modal({
+                                          width: 400,
+                                          height: 500,
+                                          title:"超级管理员修改老师密码",
+                                          button: true,
+                                          success: function () {
+                                       
+                                          },
+                                 content: response,
+                              });
+                    },
+                });
+            }
+            else
+            {
+                $.dialog({'message':"请输入老师的名字!",type:"error"});
+            }
+        });
 
     });
 

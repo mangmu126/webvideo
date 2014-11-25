@@ -38,7 +38,7 @@
 </form>
 </body>
 <script type="text/javascript" src="/webvideo/Public/Admin/Js/jquery-1.7.2.min.js"></script>
-	<srcipt src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"/>
+	<script src="/webvideo/Public/hdjs/hdslide/js/hdslide.js"></script>
 	<script type="text/javascript" src="/webvideo/Public/hdjs/hdui/js/hdui.js"></script>
 	<script type="text/javascript" src="/webvideo/Public/hdjs/hdvalidate/js/hdvalidate.js"></script>
 	<link rel="stylesheet" type="text/css" href="/webvideo/Public/hdjs/hdvalidate/css/hdvalidate.css">

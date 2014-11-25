@@ -1,0 +1,18 @@
+label.error{
+	float:left;
+	color:#666;
+	width:200px;
+	padding-left:10px;
+	padding-top:2px;
+	
+	}
+input.valid{
+	background:url(../Img/success.gif) no-repeat right center;
+	}
+input.error{
+	background:url(../Img/error.png) no-repeat right center;	
+	}
+.left{
+	float:left;
+	
+}

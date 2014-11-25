@@ -49,4 +49,55 @@ Class MemberModel extends Model
 				return 0;
 			}
 		}
+		//查找老师
+		public function checkTeacher($name)
+		{
+			$where['m_name']=array('like',"%$name");
+			if($rel=$this->where($where)->limit(10)->select())
+			{
+				return $rel;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		//ajax验证
+		public function ajaxTeacher($_data){
+			if ($_data['type']=='m_name') {
+				$data['m_name']=$_data['m_name'];
+				if($rel=$this->where($data)->select())
+				{
+					return $rel;
+				}
+				else
+				{
+					return '0';
+				}
+			}
+			elseif ($_data['type']=='username') 
+			{
+				$data['username']=$_data['username'];
+				if($rel=$this->where($data)->select())
+				{
+					return $rel;
+				}
+				else
+				{
+					return '0';
+				}
+			}elseif ($_data['type']=='email') {
+				$data['email']=$_data['email'];
+				if ($rel=$this->where($data)->select())
+				 {
+					return $rel;
+				}
+				else
+				{
+					return '0';
+				}
+			}
+			
+
+		}
 }
